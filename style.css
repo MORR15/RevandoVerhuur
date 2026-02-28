@@ -831,6 +831,7 @@ footer a {
   width: 100%;
   margin-top: 60px;
   margin-bottom: 20px;
+  align-items: stretch; /* Dit houdt de vakken in de rij even hoog */
 }
 
 .tent-item {
@@ -840,6 +841,11 @@ footer a {
   text-align: center;
   padding: 20px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Verwijder height: 430px; en vervang door: */
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
 }
 
 .tent-item.red {
@@ -860,17 +866,21 @@ footer a {
 
 .tent-item img {
   width: 100%;
+  /* Vervang height: 250px; door aspect-ratio */
+  aspect-ratio: 3 / 2; 
+  object-fit: cover;   
   border-radius: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  flex-shrink: 0; /* Voorkomt dat de afbeelding wordt platgedrukt */
 }
 
+/* 4. Tekst begint op de 'rode lijn' */
 .tent-item h3 {
   font-family: "urbane-rounded", sans-serif;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin: auto
 }
-
 /* Contact pagina */
 .contact-titel {
   text-align: center;
@@ -1787,6 +1797,7 @@ footer a {
 .fancy-border {
   position: relative;
 }
+
 .fancy-border::before {
   content: "";
   position: absolute;

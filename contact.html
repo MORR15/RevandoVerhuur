@@ -40,10 +40,10 @@
         <div class="contact-columns">
           <div class="contact-page-left">
             <form class="contact-page-form">
-              <input type="text" placeholder="Naam" required> 
-              <input type="email" placeholder="E-mail" required> 
-              <input type="tel" placeholder="Telefoonnummer"> 
-              <textarea placeholder="Bericht" required></textarea>
+              <input type="text" id="naam" placeholder="Naam" required> 
+              <input type="email" id="email" placeholder="E-mail" required> 
+              <input type="tel" id="telefoon" placeholder="Telefoonnummer"> 
+              <textarea id="bericht" placeholder="Bericht" required></textarea>
               <button type="submit" class="contact-page-button">Verzenden</button>
             </form>
           </div>
@@ -125,5 +125,13 @@
       </div>
     </div>
   </footer>
+  <script src="script.js"></script>
+  <div id="popup" class="popup-overlay">
+    <div class="popup-box fancy-border">
+      <h2 class="popup-title">Bericht verzonden!</h2>
+      <p class="popup-message" id="popupMessage"></p>
+      <button id="closePopup" class="popup-close">Sluiten</button>
+    </div>
+  </div>
 </body>
 </html>
