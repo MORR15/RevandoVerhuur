@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/ufi8zvg.css">
   <title>Revando Verhuur</title>
+  <link rel="icon" href="img/Revando_logo.png" type="image/png">
 </head>
 <body>
   <header>
@@ -17,15 +18,23 @@
         <nav>
           <ul class="nav-links">
             <li><a href="index.html" class="link-home">Home</a></li>
-            <li><a href="#assortiment" class="link-assortiment">Assortiment</a></li>
-            <li><a href="#over-ons" class="link-overons">Over ons</a></li>
+            <li><a href="index.html#assortiment" class="link-assortiment">Assortiment</a></li>
+            <li><a href="index.html#over-ons" class="link-overons">Over ons</a></li>
             <li><a href="contact.html" class="link-contact">Contact</a></li>
           </ul>
         </nav>
       </div>
       <div class="header-right">
-        <a href="#"><img class="zoeken-img" src="icons/zoeken.svg" alt="Zoeken"></a>
-        <a href="contact.html"><img class="offerte-img" src="icons/offerte.svg" alt="Offerte"></a>
+        <div class="zoek-wrapper" id="zoek-wrapper">
+          <div class="zoek-uitklap">
+            <input type="text" id="zoek-input" class="zoek-input" placeholder="Zoeken..." autocomplete="off" aria-label="Zoeken">
+          </div>
+          <a href="#" id="zoeken-knop" class="zoeken-knop-link" aria-label="Zoeken">
+            <img class="zoeken-img" src="icons/zoeken.svg" alt="Zoeken">
+          </a>
+          <ul id="zoek-resultaten" class="zoek-resultaten" role="listbox"></ul>
+        </div>
+        <a href="aanvraag.html"><img class="offerte-img" src="icons/offerte.svg" alt="Offerte"></a>
         <a href="#" class="hamburger-img"><img src="icons/hamburger.svg" alt="Menu"></a>
       </div>
     </div>
@@ -39,40 +48,46 @@
     <section class="tenten-grid">
       <div class="wrapper">
         <div class="grid-container">
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-pub-tent.html" class="tent-link">
             <div class="tent-item red">
               <img src="img/Opblaasbare_tent_pub.jpeg" alt="Opblaasbare tent pub">
               <h3>Opblaasbare Pub</h3>
             </div>
           </a>
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-iglo-tent.html" class="tent-link">
             <div class="tent-item blue">
               <img src="img/Opblaasbare_iglo_feesttent.jpg" alt="Opblaasbare tent iglo">
               <h3>Opblaasbare Iglo</h3>
             </div>
           </a>
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-biergarten-tent.html" class="tent-link">
             <div class="tent-item green">
               <img src="img/Opblaasbare_tent_biertent.jpeg" alt="Opblaasbare tent biergarten">
               <h3>Opblaasbare Biergarten</h3>
             </div>
           </a>
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-skihut-tent.html" class="tent-link">
             <div class="tent-item green">
               <img src="img/Opblaasbare_tent_skihut.jpeg" alt="Opblaasbare tent skihut">
               <h3>Opblaasbare Skihut</h3>
             </div>
           </a>
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-nachtclub-tent.html" class="tent-link">
             <div class="tent-item orange">
               <img src="img/opblaasbare_tent_nachtclub.jpeg" alt="Opblaasbare tent nightclub">
-              <h3>Opblaasbare Nightclub</h3>
+              <h3>Opblaasbare Nachtclub</h3>
             </div>
           </a>
-          <a href="#" class="tent-link">
+          <a href="opblaasbare-caribien-tent.html" class="tent-link">
             <div class="tent-item red">
-              <img src="img/Opblaasbare_multicolor_feesttent.jpg" alt="Opblaasbare tent multicolor">
-              <h3>Opblaasbare Multicolor tent</h3>
+              <img src="img/Opblaasbare_caribien_tent.jpeg" alt="Opblaasbare tent caribien">
+              <h3>Opblaasbare Caribien Pub</h3>
+            </div>
+          </a>
+          <a href="opblaasbare-beachbar-tent.html" class="tent-link">
+            <div class="tent-item blue">
+              <img src="img/opblaasbare_beachbar.jpeg" alt="Opblaasbare tent beachbar">
+              <h3>Opblaasbare Beachbar</h3>
             </div>
           </a>
         </div>
@@ -109,7 +124,7 @@
           <h3>Contact</h3>
           <p>Adres: <strong>Het Laar 20, 6026 RX Maarheeze</strong></p>
           <p>E-mail: <a href="mailto:info@revandoverhuur.nl"><strong>info@revandoverhuur.nl</strong></a></p>
-          <p>Telefoonnummer: <strong>06 52310631</strong></p>
+          <p>Telefoonnummer: <strong>06-11447374</strong></p>
         </div>
         <div class="footer-column">
           <h3>Sociaal</h3>
@@ -119,9 +134,19 @@
         </div>
       </div>
       <div class="footer-copyright">
-        <p>&copy; 2025 Revando Verhuur Alle rechten voorbehouden | Website door Morris Cox</p>
+        <p>&copy; 2026 Revando Verhuur Alle rechten voorbehouden | Website door Morris Cox</p>
       </div>
     </div>
   </footer>
+
+      <!-- WhatsApp knop -->
+      <a href="https://wa.me/31611447374" 
+      class="whatsapp-knop" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      aria-label="App ons op WhatsApp">
+     <img src="icons/whatsapp.svg" alt="WhatsApp">
+   </a>
+   <script src="script.js"></script>
 </body>
 </html>

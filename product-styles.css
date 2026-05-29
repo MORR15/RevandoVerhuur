@@ -1,0 +1,779 @@
+/* detail pagina's, aanvraag en gegevens pagina's  */
+
+.detail {
+  margin-top: 50px;
+}
+
+.breadcrumbs {
+  margin-top: 25px;
+  background-color: transparent;
+}
+
+.breadcrumbs ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.breadcrumbs li {
+  font-family: "rooney-sans", sans-serif; 
+  font-size: 0.95rem;
+  font-weight: 200;
+}
+
+.breadcrumbs li a {
+  text-decoration: none;
+  color: #000000; 
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: ">";
+  margin-left: 10px;
+  color: #000000
+}
+
+.breadcrumbs li:last-child {
+  font-weight: 500;
+  color: #000000;
+}
+
+.detail .wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 4%;
+}
+
+.detail-left {
+  flex: 0 0 48%;
+}
+
+.detail-right {
+  flex: 0 0 46%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column; 
+}
+
+.product-img {
+  width: 100%;       
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.border {
+  border-radius: 14px;
+  display: flex;
+}
+
+.product-title {
+  font-size: clamp(1.4rem, 2.5vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 2px;
+  margin-top: -13px;
+}
+
+.product-title--long {
+  font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+}
+
+.price-amount {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #6EC363; 
+  margin-right: 7px;
+}
+
+.price-note {
+  font-size: 1.5rem;
+  color: #6EC363;
+  font-weight: 300;
+}
+
+.product-options {
+  margin-top: auto; 
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #D8D8D8;
+  border-radius: 12px;
+  padding: 17px 20px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.10) inset;
+  transition: border-color 0.2s;
+}
+
+.checkbox-container {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: #fff;
+  border: 1px solid #D8D8D8;
+  border-radius: 8px;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 10px;
+  top: 5px;
+  width: 6px;
+  height: 12px;
+  border: solid #6EC363;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.option-name {
+  flex: 1;
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1.4rem;
+}
+
+.option-price {
+  font-family: "rooney-sans", sans-serif;
+  font-weight: 500;
+  color: #6EC363;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.add-to-request {
+  margin-top: 20px;
+  background-color: #EC172A;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 17px; 
+  font-family: "urbane-rounded", sans-serif;
+  font-weight: 550;
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.product-info {
+  margin-top: 100px;
+}
+
+.product-info .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+}
+
+.info-left {
+  flex: 0 0 48%;
+}
+
+h2 {
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  max-width: 606px;
+}
+
+p {
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: normal;
+  max-width: 610px;
+}
+
+.info-right {
+  max-width: 515px;
+  margin-top: 65px;
+}
+
+.info-right h2 {
+  font-size: 2rem;
+}
+
+.info-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-spec {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.info-spec p {
+  margin-bottom: 0;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — Tablet (≤ 1024px)
+───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .detail .wrapper {
+    gap: 30px;
+  }
+
+  .detail-left {
+    flex: 0 0 45%;
+  }
+
+  .detail-right {
+    flex: 0 0 50%;
+  }
+
+  .price-amount {
+    font-size: 2rem;
+  }
+
+  .price-note {
+    font-size: 1.2rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .option-name,
+  .option-price {
+    font-size: 1.2rem;
+  }
+
+  .info-right {
+    max-width: 44%;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — Mobile (≤ 768px)
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .detail {
+    margin-top: 30px;
+  }
+
+  .detail .wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .detail-left,
+  .detail-right {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .product-img {
+    max-height: 320px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .product-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-top: 0;
+  }
+
+  .product-title--long {
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  }
+
+  .price-amount {
+    font-size: 1.8rem;
+  }
+
+  .price-note {
+    font-size: 1.1rem;
+  }
+
+  .product-options {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .option-row {
+    padding: 14px 16px;
+  }
+
+  .option-name,
+  .option-price {
+    font-size: 1.1rem;
+  }
+
+  .checkbox-container {
+    width: 24px;
+    height: 24px;
+    margin-right: 14px;
+  }
+
+  .checkmark {
+    height: 26px;
+    width: 26px;
+  }
+
+  .add-to-request {
+    font-size: 1.2rem;
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  .product-info {
+    margin-top: 60px;
+  }
+
+  .product-info .wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .info-left {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .info-right {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    max-width: 100%;
+  }
+
+  .info-right h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.15rem;
+    max-width: 100%;
+  }
+
+  .info-specs {
+    gap: 18px;
+  }
+
+  .info-spec {
+    gap: 16px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — Small mobile (≤ 480px)
+───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .breadcrumbs li {
+    font-size: 0.85rem;
+  }
+
+  .price-amount {
+    font-size: 1.6rem;
+  }
+
+  .option-name,
+  .option-price {
+    font-size: 1rem;
+  }
+
+  .option-row {
+    padding: 12px 14px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+
+  .add-to-request {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+}
+
+
+/* Aanvraag pagina */
+.aanvraag {
+  margin-top: 100px;
+}
+
+.aanvraag .wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 4%;
+}
+
+.aanvraag-left {
+  flex: 0 0 35%;
+}
+ 
+.aanvraag-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.aanvraag-left p{
+  max-width: 405px;
+}
+ 
+.aanvraag-right {
+  flex: 0 0 60%;
+  min-width: 0;
+}
+
+.aanvraag-overzicht {
+  position: relative;
+  background-color: #FFFFFF;
+  height: 80px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
+  margin-top: 85px;
+  border-radius: 2px 2px 12px 12px;
+  overflow: hidden;
+}
+
+.aanvraag-overzicht::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right,
+    #EC172A 0% 25%,
+    #76D9F8 25% 50%,
+    #6EC363 50% 75%,
+    #FA961D 75% 100%
+  );
+}
+
+.aanvraag-tekst {
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 28px 28px 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.verder-winkelen {
+  display: inline-block;
+  margin-top: 30px;
+  background-color: #EC172A;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 15px 28px;
+  font-family: "urbane-rounded", sans-serif;
+  font-weight: 550;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Gegevens pagina */
+.gegevens {
+  margin-top: 100px;
+}
+
+.gegevens .wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 4%;
+}
+
+.gegevens-left {
+  flex: 0 0 35%;
+}
+
+.gegevens-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.gegevens-left p {
+  max-width: 405px;
+}
+
+.gegevens-right {
+  flex: 0 0 60%;
+  min-width: 0;
+}
+
+.gegevens-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gegevens-form input,
+.gegevens-form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid #D8D8D8;
+  border-radius: 12px;
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000000;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.10) inset;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gegevens-form input::placeholder,
+.gegevens-form textarea::placeholder {
+  color: #AAAAAA;
+}
+
+.gegevens-form input:focus,
+.gegevens-form textarea:focus {
+  border-color: #6EC363;
+}
+
+.gegevens-form-row {
+  display: flex;
+  gap: 14px;
+}
+
+.gegevens-form-row input {
+  flex: 1;
+}
+
+.gegevens-form textarea {
+  height: 160px;
+  resize: vertical;
+}
+
+.gegevens-button {
+  margin-top: 6px;
+  background-color: #EC172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  padding: 17px;
+  font-family: "urbane-rounded", sans-serif;
+  font-weight: 550;
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.gegevens-button:hover {
+  background-color: #c9101f;
+}
+
+/* Responsive gegevens */
+@media (max-width: 768px) {
+  .gegevens {
+    margin-top: 50px;
+  }
+
+  .gegevens .wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .gegevens-left,
+  .gegevens-right {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .gegevens-left p {
+    max-width: 100%;
+  }
+
+  .gegevens-title {
+    font-size: 2.2rem;
+  }
+
+  .gegevens-form-row {
+    flex-direction: column;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   VOORWAARDEN PAGINA (Huurvoorwaarden)
+───────────────────────────────────────────── */
+
+.voorwaarden-page {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+.voorwaarden-page .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.voorwaarden-content {
+  max-width: 900px;
+  width: 100%;
+  background: #FFFFFF;
+  padding: 60px 70px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid #EAEAEA;
+}
+
+.voorwaarden-content h1 {
+  font-family: "urbane-rounded", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 550;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+/* De bekende 4-kleurige lijn onder de titel */
+.voorwaarden-content h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    #EC172A 0%, #EC172A 25%,  
+    #76D9F8 25%, #76D9F8 50%,  
+    #6EC363 50%, #6EC363 75%,
+    #FA961D 75%, #FA961D 100%
+  );
+}
+
+.voorwaarden-content h2 {
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 2rem;
+  color: #000;
+  margin-top: 55px;
+  margin-bottom: 20px;
+  font-weight: 550;
+  max-width: 100%;
+}
+
+.voorwaarden-content h3 {
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.voorwaarden-content p, 
+.voorwaarden-content li {
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 16px;
+  max-width: 100%;
+}
+
+.voorwaarden-content strong {
+  font-weight: 600;
+  color: #000;
+}
+
+.voorwaarden-content ul, 
+.voorwaarden-content ol {
+  margin-left: 25px;
+  margin-bottom: 25px;
+}
+
+.voorwaarden-content li {
+  margin-bottom: 12px;
+}
+
+/* Gekleurd blokje voor de bedrijfsgegevens bovenin */
+.bedrijfsgegevens {
+  background: #f9f9f9;
+  padding: 25px 35px;
+  border-radius: 12px;
+  border-left: 5px solid #76D9F8;
+  margin-bottom: 50px;
+}
+
+.bedrijfsgegevens p {
+  margin-bottom: 0;
+}
+
+/* Responsiviteit voor kleinere schermen */
+@media (max-width: 768px) {
+  .voorwaarden-page {
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+  
+  .voorwaarden-content {
+    padding: 35px 25px;
+    border-radius: 15px;
+  }
+
+  .voorwaarden-content h2 {
+    font-size: 1.6rem;
+    margin-top: 40px;
+  }
+
+  .voorwaarden-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .voorwaarden-content p, 
+  .voorwaarden-content li {
+    font-size: 1.1rem;
+  }
+  
+  .bedrijfsgegevens {
+    padding: 20px;
+  }
+}

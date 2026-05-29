@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-styles.css">
   <link rel="stylesheet" href="https://use.typekit.net/ufi8zvg.css">
-  <title>Revando Verhuur</title>
+  <title>Laserguns — Revando Verhuur</title>
   <link rel="icon" href="img/Revando_logo.png" type="image/png">
 </head>
 <body>
   <header>
     <div class="container">
       <div class="header-left">
-        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revondo Verhuur Logo"></a>
+        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revando Verhuur Logo"></a>
       </div>
       <div class="header-center">
         <nav>
@@ -40,53 +41,55 @@
     </div>
   </header>
   <main>
-    <section class="contact-page">
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lasergames.html">Lasergames</a></li>
+          <li>Standaard Laserguns</li>
+        </ul>
+      </div>
+    </nav>
+    <section class="detail">
       <div class="wrapper">
-        <div class="contact-titel">
-          <h1>Contact Revando Verhuur</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar sem a dolor sollicitudin, quis elementum diam volutpat.</p>
-        </div>
-        <div class="contact-columns">
-          <div class="contact-page-left">
-            <form class="contact-page-form">
-              <input type="text" id="naam" placeholder="Naam" required> 
-              <input type="email" id="email" placeholder="E-mail" required> 
-              <input type="tel" id="telefoon" placeholder="Telefoonnummer"> 
-              <textarea id="bericht" placeholder="Bericht" required></textarea>
-              <button type="submit" class="contact-page-button">Verzenden</button>
-            </form>
-          </div>
-          <div class="contact-page-right">
-            <div class="contact-right-inner">
-              <h3>Contactgegevens</h3>
-              <div class="contact-options">
-                <div class="contact-option">
-                  <img src="icons/phone.svg" alt="Telefoonnummer">
-                  <p>06-11447374</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/mail-contact.svg" alt="E-mailadres">
-                  <p>info@revandoverhuur.nl</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/whatsapp.svg" alt="Whatsapp icon">
-                  <p>Whatsapp ons</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/location.svg" alt="Locatie">
-                  <p>Het Laar 20, 6026 RX Maarheeze</p>
-                </div>
-              </div>
-              <div class="contact-socials">
-                <h3>Volg ons</h3>
-                <div class="social-icons">
-                  <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
-                  <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
-                  <a href="#"><img src="icons/tiktok.svg" alt="TikTok"></a>
-              </div>
-            </div>
+        <div class="detail-left">
+          <div class="detail-left border">
+            <img class="product-img" src="img/lasergame_guns.jpeg" alt="Lasergames Standaard Laserguns">
           </div>
         </div>
+        <div class="detail-right">
+          <h1 class="product-title">Standaard Laserguns</h1>
+          <p class="product-price"><span class="price-amount">€5,00<small>/stuk</small></span> <span class="price-note">incl. target</span></p>
+          <div class="product-options">
+    
+            <label class="option-row">
+              <div class="checkbox-container">
+                <input type="checkbox" name="licht-geluid">
+                <span class="checkmark"></span>
+              </div>
+              <span class="option-name">ITS systeem</span>
+              <span class="option-price">+€10<small>/set (2 stuks)</small></span>
+            </label>
+          
+            <button type="button" class="add-to-request">Toevoegen aan aanvraag</button>
+          </div>
+        </div>
+      </div>
+      <h2></h2>
+    </section>
+    <section class="product-info">
+      <div class="wrapper">
+        <div class="info-left">
+          <h2>Standaards Laserguns huren bij Revando Verhuur</h2>
+
+          <p>Wil je een lasergame huren voor een actief en uniek feest of evenement? Deze lasergame set is geschikt voor kinderen en volwassenen van 6 tot 99 jaar en kan zowel binnen als buiten gespeeld worden, van bos tot eigen terrein. Met verschillende spelscenario’s en onschadelijke infraroodtechnologie beleef je een spannende maar veilige activiteit.</p>
+
+          <p>De laserguns kosten €5 per stuk inclusief targets. Het spel is uit te breiden met een ITS-systeem (€10 per set), waarmee je extra spelelementen toevoegt zoals bommen of medic stations voor meer actie en strategie.</p>
+
+          <p>Daarnaast zijn er ook lasergeweren beschikbaar (geschikt vanaf circa 10 jaar) met extra mogelijkheden voor een nog uitgebreidere spelervaring.</p>
+
+        </div>
+       </div>
       </div>
     </section>
   </main>
@@ -126,7 +129,7 @@
           <h3>Sociaal</h3>
           <img src="icons/facebook.svg" alt="Facebook">
           <img src="icons/instagram.svg" alt="Instagram">
-          <img src="icons/tiktok.svg" alt="LinkedIn">
+          <img src="icons/tiktok.svg" alt="TikTok">
         </div>
       </div>
       <div class="footer-copyright">
@@ -145,12 +148,5 @@
  </a>
  
   <script src="script.js"></script>
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box fancy-border">
-      <h2 class="popup-title">Bericht verzonden!</h2>
-      <p class="popup-message" id="popupMessage"></p>
-      <button id="closePopup" class="popup-close">Sluiten</button>
-    </div>
-  </div>
 </body>
 </html>

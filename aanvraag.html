@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-styles.css">
   <link rel="stylesheet" href="https://use.typekit.net/ufi8zvg.css">
-  <title>Revando Verhuur</title>
+  <title>Aanvraag — Revando Verhuur</title>
   <link rel="icon" href="img/Revando_logo.png" type="image/png">
 </head>
-<body>
+<body class="invoice-page">
   <header>
     <div class="container">
       <div class="header-left">
-        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revondo Verhuur Logo"></a>
+        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revando Verhuur Logo"></a>
       </div>
       <div class="header-center">
         <nav>
           <ul class="nav-links">
             <li><a href="index.html" class="link-home">Home</a></li>
             <li><a href="index.html#assortiment" class="link-assortiment">Assortiment</a></li>
-            <li><a href="index.html#over-ons" class="link-overons">Over ons</a></li>
+            <li><a href="inex.html#over-ons" class="link-overons">Over ons</a></li>
             <li><a href="contact.html" class="link-contact">Contact</a></li>
           </ul>
         </nav>
@@ -40,54 +41,20 @@
     </div>
   </header>
   <main>
-    <section class="contact-page">
+    <section class="aanvraag">
       <div class="wrapper">
-        <div class="contact-titel">
-          <h1>Contact Revando Verhuur</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar sem a dolor sollicitudin, quis elementum diam volutpat.</p>
+        <div class="aanvraag-left">
+          <h1 class="aanvraag-title">Je aanvraag</h1>
+          <p>Hier zie je jouw aanvraag met alle geselecteerde artikelen. Na het versturen van je aanvraag en het invullen van je contactgegevens op de volgende pagina, nemen wij contact met je op om alles persoonlijk met je door te spreken. Denk hierbij aan de huurdatum en -duur, bezorging, beschikbaarheid en de exacte prijs.</p>
+          <p>Zo kunnen we alles goed afstemmen en zorgen voor een feest dat perfect geregeld is. Met onze jarenlange ervaring helpen we je graag om er een onvergetelijke dag van te maken.</p>
+          <p>Op je reservering zijn onze huurvoorwaarden van toepassing. Gelieve deze vooraf door te nemen.</p>
         </div>
-        <div class="contact-columns">
-          <div class="contact-page-left">
-            <form class="contact-page-form">
-              <input type="text" id="naam" placeholder="Naam" required> 
-              <input type="email" id="email" placeholder="E-mail" required> 
-              <input type="tel" id="telefoon" placeholder="Telefoonnummer"> 
-              <textarea id="bericht" placeholder="Bericht" required></textarea>
-              <button type="submit" class="contact-page-button">Verzenden</button>
-            </form>
+        <div class="aanvraag-right">
+          <div class="aanvraag-overzicht">
+            <p class="aanvraag-tekst">Je hebt momenteel geen items in je winkelwagen</p>
           </div>
-          <div class="contact-page-right">
-            <div class="contact-right-inner">
-              <h3>Contactgegevens</h3>
-              <div class="contact-options">
-                <div class="contact-option">
-                  <img src="icons/phone.svg" alt="Telefoonnummer">
-                  <p>06-11447374</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/mail-contact.svg" alt="E-mailadres">
-                  <p>info@revandoverhuur.nl</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/whatsapp.svg" alt="Whatsapp icon">
-                  <p>Whatsapp ons</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/location.svg" alt="Locatie">
-                  <p>Het Laar 20, 6026 RX Maarheeze</p>
-                </div>
-              </div>
-              <div class="contact-socials">
-                <h3>Volg ons</h3>
-                <div class="social-icons">
-                  <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
-                  <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
-                  <a href="#"><img src="icons/tiktok.svg" alt="TikTok"></a>
-              </div>
-            </div>
-          </div>
+          <a href="index.html#assortiment" class="verder-winkelen">Verder winkelen</a>
         </div>
-      </div>
     </section>
   </main>
   <footer>
@@ -126,7 +93,7 @@
           <h3>Sociaal</h3>
           <img src="icons/facebook.svg" alt="Facebook">
           <img src="icons/instagram.svg" alt="Instagram">
-          <img src="icons/tiktok.svg" alt="LinkedIn">
+          <img src="icons/tiktok.svg" alt="TikTok">
         </div>
       </div>
       <div class="footer-copyright">
@@ -134,7 +101,7 @@
       </div>
     </div>
   </footer>
-
+  
     <!-- WhatsApp knop -->
     <a href="https://wa.me/31611447374" 
     class="whatsapp-knop" 
@@ -143,14 +110,7 @@
     aria-label="App ons op WhatsApp">
    <img src="icons/whatsapp.svg" alt="WhatsApp">
  </a>
- 
+
   <script src="script.js"></script>
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box fancy-border">
-      <h2 class="popup-title">Bericht verzonden!</h2>
-      <p class="popup-message" id="popupMessage"></p>
-      <button id="closePopup" class="popup-close">Sluiten</button>
-    </div>
-  </div>
 </body>
 </html>

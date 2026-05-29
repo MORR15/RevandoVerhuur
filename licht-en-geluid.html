@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-styles.css">
   <link rel="stylesheet" href="https://use.typekit.net/ufi8zvg.css">
-  <title>Revando Verhuur</title>
+  <title>Licht & Geluid pakket — Revando Verhuur</title>
   <link rel="icon" href="img/Revando_logo.png" type="image/png">
 </head>
 <body>
   <header>
     <div class="container">
       <div class="header-left">
-        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revondo Verhuur Logo"></a>
+        <a href="index.html"><img class="logo-img" src="img/Revando_logo.png" alt="Revando Verhuur Logo"></a>
       </div>
       <div class="header-center">
         <nav>
@@ -40,52 +41,40 @@
     </div>
   </header>
   <main>
-    <section class="contact-page">
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>Licht & Geluid pakket</li>
+        </ul>
+      </div>
+    </nav>
+    <section class="detail">
       <div class="wrapper">
-        <div class="contact-titel">
-          <h1>Contact Revando Verhuur</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar sem a dolor sollicitudin, quis elementum diam volutpat.</p>
+        <div class="detail-left">
+          <div class="detail-left border">
+            <img class="product-img" src="img/licht_geluid.jpg" alt="Licht & Geluid">
+          </div>
         </div>
-        <div class="contact-columns">
-          <div class="contact-page-left">
-            <form class="contact-page-form">
-              <input type="text" id="naam" placeholder="Naam" required> 
-              <input type="email" id="email" placeholder="E-mail" required> 
-              <input type="tel" id="telefoon" placeholder="Telefoonnummer"> 
-              <textarea id="bericht" placeholder="Bericht" required></textarea>
-              <button type="submit" class="contact-page-button">Verzenden</button>
-            </form>
+        <div class="detail-right">
+          <h1 class="product-title">Licht & Geluid pakket</h1>
+          <p class="product-price"><span class="price-amount">€100</span> <span class="price-note">incl. ledbar, movingheads en 2 muziekboxen</span></p>
+          <div class="product-options">
+            <button type="button" class="add-to-request">Toevoegen aan aanvraag</button>
           </div>
-          <div class="contact-page-right">
-            <div class="contact-right-inner">
-              <h3>Contactgegevens</h3>
-              <div class="contact-options">
-                <div class="contact-option">
-                  <img src="icons/phone.svg" alt="Telefoonnummer">
-                  <p>06-11447374</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/mail-contact.svg" alt="E-mailadres">
-                  <p>info@revandoverhuur.nl</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/whatsapp.svg" alt="Whatsapp icon">
-                  <p>Whatsapp ons</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/location.svg" alt="Locatie">
-                  <p>Het Laar 20, 6026 RX Maarheeze</p>
-                </div>
-              </div>
-              <div class="contact-socials">
-                <h3>Volg ons</h3>
-                <div class="social-icons">
-                  <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
-                  <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
-                  <a href="#"><img src="icons/tiktok.svg" alt="TikTok"></a>
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <h2></h2>
+    </section>
+    <section class="product-info">
+      <div class="wrapper">
+        <div class="info-left">
+          <h2>Licht & Geluid pakket huren bij Revando Verhuur</h2>
+
+          <p>Wil je je feesttent compleet aankleden met licht en geluid? Kies dan voor dit licht- en geluidspakket met LED par, moving heads en 2 muziekboxen. Perfect om direct sfeer te creëren op je feest of evenement en eenvoudig te combineren met onze tenten.</p>
+
+          <p>Dit complete pakket is te huren voor €100 extra.</p>
+        </div>
         </div>
       </div>
     </section>
@@ -126,7 +115,7 @@
           <h3>Sociaal</h3>
           <img src="icons/facebook.svg" alt="Facebook">
           <img src="icons/instagram.svg" alt="Instagram">
-          <img src="icons/tiktok.svg" alt="LinkedIn">
+          <img src="icons/tiktok.svg" alt="TikTok">
         </div>
       </div>
       <div class="footer-copyright">
@@ -135,22 +124,15 @@
     </div>
   </footer>
 
-    <!-- WhatsApp knop -->
-    <a href="https://wa.me/31611447374" 
-    class="whatsapp-knop" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    aria-label="App ons op WhatsApp">
-   <img src="icons/whatsapp.svg" alt="WhatsApp">
- </a>
- 
+      <!-- WhatsApp knop -->
+      <a href="https://wa.me/31611447374" 
+      class="whatsapp-knop" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      aria-label="App ons op WhatsApp">
+     <img src="icons/whatsapp.svg" alt="WhatsApp">
+   </a>
+   
   <script src="script.js"></script>
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box fancy-border">
-      <h2 class="popup-title">Bericht verzonden!</h2>
-      <p class="popup-message" id="popupMessage"></p>
-      <button id="closePopup" class="popup-close">Sluiten</button>
-    </div>
-  </div>
 </body>
 </html>

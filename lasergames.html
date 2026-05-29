@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/ufi8zvg.css">
-  <title>Revando Verhuur</title>
+  <title>Revando Verhuur - Lasergames</title>
   <link rel="icon" href="img/Revando_logo.png" type="image/png">
 </head>
 <body>
@@ -39,57 +39,34 @@
       </div>
     </div>
   </header>
+
   <main>
-    <section class="contact-page">
+    <section class="tenten-page">
       <div class="wrapper">
-        <div class="contact-titel">
-          <h1>Contact Revando Verhuur</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar sem a dolor sollicitudin, quis elementum diam volutpat.</p>
+        <h1>Lasergames</h1>
         </div>
-        <div class="contact-columns">
-          <div class="contact-page-left">
-            <form class="contact-page-form">
-              <input type="text" id="naam" placeholder="Naam" required> 
-              <input type="email" id="email" placeholder="E-mail" required> 
-              <input type="tel" id="telefoon" placeholder="Telefoonnummer"> 
-              <textarea id="bericht" placeholder="Bericht" required></textarea>
-              <button type="submit" class="contact-page-button">Verzenden</button>
-            </form>
-          </div>
-          <div class="contact-page-right">
-            <div class="contact-right-inner">
-              <h3>Contactgegevens</h3>
-              <div class="contact-options">
-                <div class="contact-option">
-                  <img src="icons/phone.svg" alt="Telefoonnummer">
-                  <p>06-11447374</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/mail-contact.svg" alt="E-mailadres">
-                  <p>info@revandoverhuur.nl</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/whatsapp.svg" alt="Whatsapp icon">
-                  <p>Whatsapp ons</p>
-                </div>
-                <div class="contact-option">
-                  <img src="icons/location.svg" alt="Locatie">
-                  <p>Het Laar 20, 6026 RX Maarheeze</p>
-                </div>
-              </div>
-              <div class="contact-socials">
-                <h3>Volg ons</h3>
-                <div class="social-icons">
-                  <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
-                  <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
-                  <a href="#"><img src="icons/tiktok.svg" alt="TikTok"></a>
-              </div>
+    </section>
+
+    <section class="tenten-grid">
+      <div class="wrapper">
+        <div class="grid-container grid-2col">
+          <a href="laserguns.html" class="tent-link">
+            <div class="tent-item red">
+              <img src="img/lasergame_guns.jpeg" alt="Standaard Laserguns">
+              <h3>Standaard Laserguns</h3>
             </div>
-          </div>
+          </a>
+          <a href="pro-laserguns.html" class="tent-link">
+            <div class="tent-item orange">
+              <img src="img/lasergames_pro.jpeg" alt="Assault Striker lasergeweren">
+              <h3>Assault Striker Lasergeweren</h3>
+            </div>
+          </a>
         </div>
       </div>
     </section>
   </main>
+
   <footer>
     <div class="wrapper">
       <div class="footer-logo">
@@ -99,9 +76,9 @@
         <div class="footer-column">
           <h3>Assortiment</h3>
           <ul>
-            <li><a href="#">Opblaasbare tenten</a></li>
+            <li><a href="opblaasbare-tenten.html">Opblaasbare tenten</a></li>
             <li><a href="#">Silent disco</a></li>
-            <li><a href="#">Lasergames</a></li>
+            <li><a href="lasergames.html">Lasergames</a></li>
             <li><a href="#">Tentvloer</a></li>
             <li><a href="#">Licht & Geluid</a></li>
           </ul>
@@ -109,10 +86,10 @@
         <div class="footer-column">
           <h3>Handige links</h3>
           <ul>
-            <li><a href="#">Assortiment</a></li>
-            <li><a href="#">Over ons</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Offerte aanvragen</a></li>
+            <li><a href="index.html#assortiment">Assortiment</a></li>
+            <li><a href="index.html#over-ons">Over ons</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Offerte aanvragen</a></li>
             <li><a href="#">Algemene voorwaarden</a></li>
           </ul>
         </div>
@@ -143,14 +120,7 @@
     aria-label="App ons op WhatsApp">
    <img src="icons/whatsapp.svg" alt="WhatsApp">
  </a>
- 
-  <script src="script.js"></script>
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box fancy-border">
-      <h2 class="popup-title">Bericht verzonden!</h2>
-      <p class="popup-message" id="popupMessage"></p>
-      <button id="closePopup" class="popup-close">Sluiten</button>
-    </div>
-  </div>
+
+ <script src="script.js"></script>
 </body>
 </html>
