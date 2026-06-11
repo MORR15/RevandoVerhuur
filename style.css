@@ -149,6 +149,32 @@ header::after {
   height: 33px;
 }
 
+.offerte-link {
+  position: relative;
+  display: inline-flex;
+}
+
+.aanvraag-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #EC172A;
+  color: #FFFFFF;
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
+.aanvraag-badge[hidden] {
+  display: none;
+}
+
 .hamburger-img {
   display: none;
 }
@@ -302,10 +328,10 @@ p {
 .assortiment-h2 {
   font-family: "urbane-rounded", sans-serif;
   font-size: 52px;
-  font-weight: 700;
+  font-weight: 600;
   position: relative;
-  display: inline-block; 
-  margin: 0 auto 50px;  
+  display: inline-block;
+  margin: 0 auto 50px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -315,13 +341,13 @@ p {
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 100%; 
+  width: 100%;
   height: 4px;
   border-radius: 3px;
   background: linear-gradient(
     to right,
-    #EC172A 0%, #EC172A 25%,  
-    #76D9F8 25%, #76D9F8 50%,  
+    #EC172A 0%, #EC172A 25%,
+    #76D9F8 25%, #76D9F8 50%,
     #6EC363 50%, #6EC363 75%,
     #FA961D 75%, #FA961D 100%
   );
@@ -329,22 +355,35 @@ p {
 
 .assortiment-items {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
-  gap: 40px; 
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
 }
-  
+
+.assortiment-left-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
 .assortiment-left {
+  height: 642px;
   border-radius: 20px;
-  padding: 20px;
+  padding: 34px 28px 48px;
+  box-sizing: border-box;
   text-align: center;
-  height: 642px
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 65px;
 }
 
 .four-color-border {
   position: relative;
   border-radius: 20px;
-  padding: 20px;
   background: var(--bg-card);
   z-index: 0;
 }
@@ -354,58 +393,28 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 4px; 
+  padding: 4px;
   background: conic-gradient(
-    #76D9F8 0% 25%,  
-    #6EC363 25% 50%,  
-    #FA961D 50% 75%,  
-    #EC172A 75% 100%  
+    #76D9F8 0% 25%,
+    #6EC363 25% 50%,
+    #FA961D 50% 75%,
+    #EC172A 75% 100%
   );
-  
+
   -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
 
   pointer-events: none;
 }
 
-.assortiment-left-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-  
 .tent-img {
   width: 100%;
+  max-height: 455px;
+  object-fit: contain;
   border-radius: 15px;
-}
-  
-.assortiment-right {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 30px;
-}
-  
-.assortiment-right > div {
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 306px;
-}
-
-.assortiment-right .assortiment-link {
-  text-decoration: none; 
-  color: inherit;      
-}
-
-.tent-link {
-  text-decoration: none; 
-  color: inherit;      
 }
 
 .opblaasbare-tenten-h3 {
@@ -414,69 +423,83 @@ p {
   font-size: 40px;
   font-style: normal;
   font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
 }
 
-h3 {
-  text-align: center;
-  font-family: "urbane-rounded", sans-serif;
-  font-size: 34px;
-  font-style: normal;
-  font-weight: 600;
+.assortiment-right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  align-items: stretch;
 }
 
-.silent-disco {
-  width: 287px;
+.assortiment-right .assortiment-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
   height: 306px;
-  border-radius: 20px;
-  border: 4px solid #76D9F8;
-}
-
-.silent-disco-img {
-  width: 180px;
-}
-
-.lasergames {
-  width: 287px;
-  height: 306px;
-  border-radius: 20px;
-  border: 4px solid #EC172A;
-}
-
-.lasergames-img {
-  width: 254px
-}
-
-.tentvloer {
-  width: 287px;
-  height: 306px;
-  border-radius: 20px;
-  border: 4px solid #6EC363;
-}
-
-.tentvloer-img {
-  width: 217px
-}
-
-.licht-en-geluid {
-  width: 287px;
-  height: 306px;
-  border-radius: 20px;
-  border: 4px solid #FA961D;
-}
-
-.licht-en-geluid-img {
-  width: 236px
 }
 
 .silent-disco,
 .lasergames,
 .tentvloer,
 .licht-en-geluid {
-  display: flex;
-  flex-direction: column;      
-  align-items: center;        
-  justify-content: center;     
-  text-align: center;          
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 24px 18px 28px;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.silent-disco {
+  border: 4px solid #76D9F8;
+}
+
+.lasergames {
+  border: 4px solid #EC172A;
+}
+
+.tentvloer {
+  border: 4px solid #6EC363;
+}
+
+.licht-en-geluid {
+  border: 4px solid #FA961D;
+}
+
+.silent-disco-img,
+.lasergames-img,
+.tentvloer-img,
+.licht-en-geluid-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 188px;
+  object-fit: contain;
+}
+
+.assortiment-right h3 {
+  text-align: center;
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.tent-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Over ons */
@@ -492,7 +515,7 @@ h3 {
   font-family: "urbane-rounded", sans-serif;
   font-size: 52px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   position: relative;    
   display: inline-block;  
   margin-bottom: 42px;    
@@ -679,6 +702,42 @@ textarea {
   margin-top: 8px;
 }
 
+/* Formspree AJAX feedback states for the existing contact and quote forms. */
+.form-feedback {
+  margin: 0;
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.form-feedback.is-success {
+  color: #2f7d32;
+}
+
+.form-feedback.is-error {
+  color: #c9101f;
+}
+
+.contact-form.is-submitting,
+.contact-page-form.is-submitting,
+.gegevens-form.is-submitting {
+  opacity: 0.75;
+}
+
+.contact-button:disabled,
+.contact-page-button:disabled,
+.gegevens-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
+.gegevens-button.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .contact-subtext {
   width: 100%; 
   text-align: center;
@@ -824,7 +883,7 @@ footer a {
 .tenten-page h1 {
   font-family: "urbane-rounded", sans-serif;
   font-size: 56px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 20px;
 
   margin: 0 auto;
@@ -907,7 +966,7 @@ footer a {
 .contact-titel h1 {
   font-family: "urbane-rounded", sans-serif;
   font-size: 56px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 15px;
 }
 
@@ -985,6 +1044,10 @@ footer a {
 .contact-page-right h3 {
   margin-bottom: 25px;
   font-size: 25px;
+
+  font-family: "urbane-rounded", sans-serif;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .contact-options {
@@ -1835,7 +1898,7 @@ footer a {
 .popup-title {
   font-family: "urbane-rounded", sans-serif;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 14px;
 }
 
@@ -2090,5 +2153,643 @@ footer a {
   .whatsapp-knop img {
     width: 28px;
     height: 28px;
+  }
+}
+
+.red-button,
+.orange-button,
+.contact-button,
+.contact-page-button,
+.popup-close,
+.verder-winkelen,
+.volgende-stap,
+.whatsapp-knop,
+.assortiment-left-link,
+.assortiment-link,
+.tent-link,
+.add-to-request,
+.gegevens-button {
+  transition: transform 0.2s ease;
+}
+
+.red-button:hover,
+.orange-button:hover,
+.contact-button:hover,
+.contact-page-button:hover,
+.popup-close:hover,
+.verder-winkelen:hover,
+.volgende-stap:hover,
+.whatsapp-knop:hover,
+.assortiment-left-link:hover,
+.assortiment-link:hover,
+.tent-link:hover,
+.add-to-request:hover,
+.gegevens-button:hover {
+  transform: scale(1.05);
+}
+
+.contact-button:disabled:hover,
+.contact-page-button:disabled:hover,
+.gegevens-button:disabled:hover,
+.gegevens-button.is-disabled:hover {
+  transform: none;
+}
+
+/* Responsive hardening, scoped to tablet and mobile only */
+@media (max-width: 1024px) {
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #76D9F8;
+    outline-offset: 3px;
+  }
+
+  p,
+  .hero-p,
+  .contact-subtext,
+  .tenten-page p,
+  .contact-titel p {
+    width: 100%;
+  }
+
+  h1,
+  .hero-h2,
+  .assortiment-h2,
+  .over-ons-h2,
+  .contact-h2,
+  .tenten-page h1,
+  .contact-titel h1 {
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-left,
+  .hero-right,
+  .over-ons-left,
+  .over-ons-right,
+  .contact-form,
+  .contact-page-form,
+  .footer-column {
+    min-width: 0;
+  }
+
+  .red-button,
+  .orange-button,
+  .contact-button,
+  .contact-page-button {
+    min-height: 48px;
+  }
+
+  .zoek-wrapper {
+    position: relative;
+  }
+
+  .tent-link {
+    display: block;
+    height: 100%;
+  }
+
+  .tent-item {
+    height: 100%;
+  }
+
+  .container,
+  .wrapper {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+
+  .header-right {
+    gap: 24px;
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+
+  h1 {
+    font-size: clamp(48px, 6vw, 62px);
+  }
+
+  .hero-h2 {
+    font-size: clamp(32px, 4.6vw, 42px);
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  .assortiment,
+  .over-ons,
+  .contact {
+    margin-top: 110px;
+  }
+
+  .assortiment-items {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assortiment-left {
+    height: auto;
+    min-height: 420px;
+    gap: 36px;
+  }
+
+  .assortiment-left,
+  .assortiment-right {
+    width: 100%;
+  }
+
+  .assortiment-right .assortiment-link {
+    height: auto;
+    min-height: 260px;
+  }
+
+  .over-ons-content {
+    gap: 36px;
+  }
+
+  .over-ons-left,
+  .over-ons-right {
+    flex: 1 1 100%;
+  }
+
+  .over-ons-icons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 44px 28px;
+  }
+
+  .icon-item h3,
+  .icon-item:first-child h3,
+  .icon-item:last-child h3 {
+    text-align: center;
+    white-space: normal;
+  }
+
+  .contact-box {
+    gap: 34px;
+  }
+
+  .contact-h2 {
+    font-size: clamp(40px, 5vw, 59px);
+  }
+
+  .footer-text {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: 80px;
+  }
+
+  .contact-columns {
+    gap: 48px;
+  }
+
+  .contact-page-left {
+    padding-right: 0;
+  }
+
+  .contact-right-inner {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    height: 78px;
+  }
+
+  .container {
+    height: 78px;
+    padding-left: 28px;
+    padding-right: 28px;
+    align-items: center;
+  }
+
+  .header-center {
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    display: block;
+    background: var(--bg-body, #fff);
+    border-bottom: 1px solid #EAEAEA;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  }
+
+  header.nav-open .header-center {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 28px 18px;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 12px;
+    border-radius: 12px;
+    font-size: 20px;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-right: 12px;
+    border-radius: 50%;
+    background: #EC172A;
+    flex: 0 0 auto;
+  }
+
+  .nav-links a.link-assortiment::before {
+    background: #76D9F8;
+  }
+
+  .nav-links a.link-overons::before {
+    background: #6EC363;
+  }
+
+  .nav-links a.link-contact::before {
+    background: #FA961D;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .logo-img {
+    height: 64px;
+  }
+
+  .hamburger-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+  }
+
+  .hamburger-img img {
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+  }
+
+  .hamburger-img::before,
+  .hamburger-img::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text-main, #000);
+    transition: transform 0.22s ease, top 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .hamburger-img::before {
+    top: 15px;
+    box-shadow: 0 7px 0 var(--text-main, #000);
+  }
+
+  .hamburger-img::after {
+    top: 29px;
+  }
+
+  header.nav-open .hamburger-img::before {
+    top: 21px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 transparent;
+  }
+
+  header.nav-open .hamburger-img::after {
+    top: 21px;
+    transform: rotate(-45deg);
+  }
+
+  .zoek-wrapper {
+    display: block;
+  }
+
+  .zoeken-img {
+    display: block;
+  }
+
+  .zoek-uitklap {
+    display: none;
+  }
+
+  .zoek-wrapper.open .zoek-uitklap,
+  .zoek-wrapper:focus-within .zoek-uitklap {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    top: 92px;
+    display: block;
+    z-index: 1200;
+  }
+
+  .zoek-wrapper.open .zoek-input,
+  .zoek-wrapper:focus-within .zoek-input {
+    width: 100%;
+  }
+
+  .zoek-resultaten {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    top: 148px;
+    width: auto;
+    max-width: none;
+    z-index: 1200;
+  }
+
+  .hero {
+    padding-top: 54px;
+  }
+
+  .wrapper {
+    padding-left: 28px;
+    padding-right: 28px;
+    gap: 34px;
+  }
+
+  .hero-left {
+    margin-bottom: 0;
+  }
+
+  .hero-right {
+    margin-top: 0;
+  }
+
+  .red-button,
+  .orange-button {
+    width: auto;
+    min-width: min(100%, 220px);
+    margin-top: 28px;
+    margin-left: 0;
+    padding: 0 22px;
+  }
+
+  .orange-button {
+    margin-left: 16px;
+  }
+
+  .assortiment-h2,
+  .over-ons-h2 {
+    font-size: clamp(38px, 7vw, 52px);
+  }
+
+  .assortiment-right {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .assortiment-right h3 {
+    font-size: clamp(21px, 3.5vw, 31px);
+    white-space: normal;
+  }
+
+  .silent-disco-img,
+  .lasergames-img,
+  .tentvloer-img,
+  .licht-en-geluid-img {
+    max-height: 160px;
+  }
+
+  .contact-box {
+    flex-direction: column;
+  }
+
+  .contact-right,
+  .contact-left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-form {
+    max-width: 620px;
+  }
+
+  .footer-text {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: 0;
+    width: 100%;
+  }
+
+  footer .wrapper {
+    align-items: flex-start;
+  }
+
+  .tenten-page,
+  .contact-titel {
+    margin-top: 64px;
+  }
+
+  .tenten-page h1,
+  .contact-titel h1 {
+    font-size: clamp(40px, 7vw, 56px);
+  }
+
+  .grid-container,
+  .grid-container.grid-2col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .tent-item {
+    min-height: 360px;
+  }
+
+  .tent-item h3 {
+    font-size: clamp(24px, 4vw, 34px);
+  }
+
+  .contact-columns {
+    flex-direction: column;
+    margin-top: 64px;
+  }
+
+  .contact-page-left,
+  .contact-page-right {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .contact-right-inner {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .container,
+  .wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .header-right {
+    gap: 16px;
+  }
+
+  .offerte-img,
+  .zoeken-img {
+    height: 28px;
+  }
+
+  .hero-left {
+    display: block;
+  }
+
+  h1 {
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .hero-h2 {
+    font-size: clamp(26px, 8vw, 33px);
+  }
+
+  p,
+  .over-ons p,
+  .contact-subtext {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .red-button,
+  .orange-button {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.2;
+    margin-left: 0;
+    margin-top: 16px;
+    padding: 0 16px;
+  }
+
+  .assortiment,
+  .over-ons,
+  .contact {
+    margin-top: 74px;
+  }
+
+  .assortiment-h2,
+  .over-ons-h2 {
+    font-size: clamp(32px, 10vw, 40px);
+  }
+
+  .assortiment-left {
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 22px 18px;
+    gap: 24px;
+  }
+
+  .opblaasbare-tenten-h3,
+  .assortiment-left .opblaasbare-tenten-h3 {
+    font-size: clamp(25px, 7vw, 31px);
+  }
+
+  .assortiment-right {
+    grid-template-columns: 1fr;
+  }
+
+  .assortiment-right .assortiment-link {
+    min-height: 230px;
+  }
+
+  .silent-disco,
+  .lasergames,
+  .tentvloer,
+  .licht-en-geluid {
+    aspect-ratio: auto;
+    min-height: 230px;
+    border-radius: 18px;
+  }
+
+  .over-ons-icons {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact-h2 {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  .form-row,
+  .contact-form .form-row {
+    flex-direction: column;
+  }
+
+  .contact-button {
+    width: 100%;
+  }
+
+  .footer-text {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column img {
+    margin-right: 18px;
+  }
+
+  .grid-container,
+  .grid-container.grid-2col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tent-item {
+    min-height: 0;
+  }
+
+  .contact-page-form input,
+  .contact-page-form textarea {
+    margin-bottom: 20px;
+  }
+
+  .contact-option {
+    align-items: flex-start;
   }
 }

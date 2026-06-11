@@ -1,57 +1,291 @@
+const ORDER_STORAGE_KEY = "orderdata";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/meewklyo";
+const header = document.querySelector("header");
 let lastScrollTop = 0;
-const header = document.querySelector('header');
 
-window.addEventListener('scroll', function() {
-  // Haal de huidige scrollpositie op
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  if (scrollTop > lastScrollTop && scrollTop > 90) {
-    // Je scrolt naar beneden EN bent de header al voorbij -> verberg header
-    header.classList.add('header-hidden');
-  } else {
-    // Je scrolt naar boven -> toon header
-    header.classList.remove('header-hidden');
+function getOrderData() {
+  try {
+    const data = JSON.parse(localStorage.getItem(ORDER_STORAGE_KEY));
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
   }
-  
-  // Sla de huidige positie op voor de volgende meting (en voorkom negatieve waarden op mobiel)
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-});
+}
+
+if (header) {
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (header.classList.contains("nav-open")) {
+      header.classList.remove("header-hidden");
+    } else if (scrollTop > lastScrollTop && scrollTop > 90) {
+      header.classList.add("header-hidden");
+    } else {
+      header.classList.remove("header-hidden");
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  function shortenText(text, maxLength = 150) {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + "...";
+  const hamburgerLink = document.querySelector(".hamburger-img");
+
+  if (hamburgerLink && header) {
+    hamburgerLink.setAttribute("aria-label", "Menu openen");
+    hamburgerLink.setAttribute("aria-expanded", "false");
+
+    hamburgerLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const isOpen = header.classList.toggle("nav-open");
+      hamburgerLink.setAttribute("aria-expanded", String(isOpen));
+      hamburgerLink.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        header.classList.remove("nav-open");
+        hamburgerLink.setAttribute("aria-expanded", "false");
+        hamburgerLink.setAttribute("aria-label", "Menu openen");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!header.classList.contains("nav-open")) return;
+      if (header.contains(e.target)) return;
+      header.classList.remove("nav-open");
+      hamburgerLink.setAttribute("aria-expanded", "false");
+      hamburgerLink.setAttribute("aria-label", "Menu openen");
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      header.classList.remove("nav-open");
+      hamburgerLink.setAttribute("aria-expanded", "false");
+      hamburgerLink.setAttribute("aria-label", "Menu openen");
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1024) {
+        header.classList.remove("nav-open");
+        hamburgerLink.setAttribute("aria-expanded", "false");
+        hamburgerLink.setAttribute("aria-label", "Menu openen");
+      }
+    });
   }
 
   const popup = document.getElementById("popup");
   const popupMessage = document.getElementById("popupMessage");
   const closePopup = document.getElementById("closePopup");
-  const forms = document.querySelectorAll(".contact-form, .contact-page-form");
+  const formspreeForms = document.querySelectorAll(".contact-form, .contact-page-form, .gegevens-form");
 
-  if (popup && forms.length > 0) {
-    forms.forEach(form => {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const naam = document.querySelector("#naam").value;
-        const email = document.getElementById("email").value;
-        const telefoon = document.getElementById("telefoon").value;
-        const berichtVolledig = document.getElementById("bericht").value;
-        const berichtKort = shortenText(berichtVolledig, 150);
+  function getOrCreateFeedback(form) {
+    let feedback = form.querySelector(".form-feedback");
+    if (!feedback) {
+      feedback = document.createElement("p");
+      feedback.className = "form-feedback";
+      feedback.setAttribute("role", "status");
+      form.appendChild(feedback);
+    }
+    return feedback;
+  }
 
-        popupMessage.innerHTML = `
-          <strong>Beste ${naam},</strong><br><br>
-          Bedankt voor je bericht! We hebben de volgende gegevens ontvangen:<br><br>
-          <strong>E-mailadres:</strong> ${email}<br>
-          <strong>Telefoonnummer:</strong> ${telefoon || "Niet ingevuld"}<br><br>
-          <strong>Je bericht:</strong><br>
-          "${berichtKort}"<br><br>
-          We nemen zo snel mogelijk contact met je op.
-        `;
-        popup.style.display = "flex";
-        form.reset();
-      });
+  function showFeedback(form, message, type = "success") {
+    if (popup && popupMessage) {
+      const popupTitle = popup.querySelector(".popup-title");
+      if (popupTitle) {
+        popupTitle.textContent = type === "error" ? "Verzenden mislukt" : (form.dataset.successTitle || "Bericht verzonden!");
+      }
+      popupMessage.textContent = message;
+      popup.style.display = "flex";
+      return;
+    }
+
+    const feedback = getOrCreateFeedback(form);
+    feedback.textContent = message;
+    feedback.setAttribute("role", type === "error" ? "alert" : "status");
+    feedback.classList.remove("is-success", "is-error");
+    feedback.classList.add(type === "error" ? "is-error" : "is-success");
+  }
+
+  function showInlineFeedback(form, message, type = "success") {
+    const feedback = getOrCreateFeedback(form);
+    feedback.textContent = message;
+    feedback.setAttribute("role", type === "error" ? "alert" : "status");
+    feedback.classList.remove("is-success", "is-error");
+    feedback.classList.add(type === "error" ? "is-error" : "is-success");
+  }
+
+  function clearFeedback(form) {
+    const feedback = form.querySelector(".form-feedback");
+    if (!feedback) return;
+    feedback.textContent = "";
+    feedback.classList.remove("is-success", "is-error");
+  }
+
+  function setFormLoading(form, isLoading) {
+    const submitButton = form.querySelector("button[type='submit']");
+    if (!submitButton) return;
+
+    if (!submitButton.dataset.originalText) {
+      submitButton.dataset.originalText = submitButton.innerText;
+    }
+
+    submitButton.disabled = isLoading;
+    submitButton.innerText = isLoading ? "Verzenden..." : submitButton.dataset.originalText;
+  }
+
+  function formatProductsForSubmission() {
+    const products = getOrderData();
+    if (products.length === 0) return "Geen producten geselecteerd.";
+
+    return products.map(product => {
+      const options = product.options?.map(option => option.name).join(", ");
+      return options ? `${product.title} (${options})` : product.title;
+    }).join("\n");
+  }
+
+  function padDatePart(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function getCurrentDateTimeForSubject() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = padDatePart(now.getMonth() + 1);
+    const day = padDatePart(now.getDate());
+    const hours = padDatePart(now.getHours());
+    const minutes = padDatePart(now.getMinutes());
+    const seconds = padDatePart(now.getSeconds());
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  function getCustomerName(formData) {
+    return String(formData.get("naam") || "Onbekende klant").trim() || "Onbekende klant";
+  }
+
+  // Builds a unique Formspree email subject so Gmail does not group submissions into one thread.
+  function buildUniqueFormSubject(form, formData) {
+    const formType = form.dataset.formType || "Websiteformulier";
+    const customerName = getCustomerName(formData);
+    const submittedAt = getCurrentDateTimeForSubject();
+    const uniqueId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+    return `${formType} | ${customerName} | ${submittedAt} | ${uniqueId}`;
+  }
+
+  function updateVisibleRequestBadges() {
+    const orderData = getOrderData();
+
+    document.querySelectorAll(".aanvraag-badge").forEach(badge => {
+      badge.innerText = orderData.length;
+      badge.hidden = orderData.length === 0;
+    });
+  }
+
+  function clearOrderData() {
+    localStorage.removeItem(ORDER_STORAGE_KEY);
+    updateVisibleRequestBadges();
+  }
+
+  // The quote form may only be sent when the visitor selected at least one product.
+  function setQuoteFormAvailability(form, showMessage = true) {
+    if (!form.classList.contains("gegevens-form")) return;
+
+    const submitButton = form.querySelector("button[type='submit']");
+    const hasProducts = getOrderData().length > 0;
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.title = hasProducts ? "" : "Voeg eerst iets toe aan je aanvraag.";
+      submitButton.classList.toggle("is-disabled", !hasProducts);
+      submitButton.setAttribute("aria-disabled", String(!hasProducts));
+    }
+
+    if (!hasProducts && showMessage) {
+      showInlineFeedback(form, "Voeg eerst iets toe aan je aanvraag voordat je het formulier verstuurt.", "error");
+    }
+  }
+
+  // Sends existing static forms to Formspree via AJAX, so submitting never reloads the page.
+  async function postFormspreeForm(form) {
+    const formData = new FormData(form);
+    const formType = form.dataset.formType || "Websiteformulier";
+
+    formData.append("formulier", formType);
+    formData.append("_subject", buildUniqueFormSubject(form, formData));
+
+    if (form.classList.contains("gegevens-form")) {
+      formData.append("producten", formatProductsForSubmission());
+    }
+
+    const response = await fetch(form.action || FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: formData
     });
 
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const formspreeError = data.errors?.map(error => error.message).join(" ");
+      throw new Error(formspreeError || "Het verzenden is niet gelukt. Probeer het later opnieuw.");
+    }
+
+    return data;
+  }
+
+  formspreeForms.forEach(form => {
+    setQuoteFormAvailability(form);
+
+    const submitButton = form.querySelector("button[type='submit']");
+    submitButton?.addEventListener("click", function (e) {
+      if (!form.classList.contains("gegevens-form") || getOrderData().length > 0) return;
+
+      e.preventDefault();
+      clearFeedback(form);
+      setQuoteFormAvailability(form);
+    });
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      clearFeedback(form);
+
+      if (form.classList.contains("gegevens-form") && getOrderData().length === 0) {
+        setQuoteFormAvailability(form);
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        showFeedback(form, "Vul de verplichte velden correct in.", "error");
+        return;
+      }
+
+      setFormLoading(form, true);
+      form.classList.add("is-submitting");
+
+      try {
+        await postFormspreeForm(form);
+        showFeedback(form, form.dataset.successMessage || "Je bericht is verzonden.", "success");
+        form.reset();
+        if (form.classList.contains("gegevens-form")) {
+          clearOrderData();
+        }
+      } catch (error) {
+        console.error("Formspree formulier fout:", error);
+        showFeedback(form, error.message, "error");
+      } finally {
+        form.classList.remove("is-submitting");
+        setFormLoading(form, false);
+        setQuoteFormAvailability(form, false);
+      }
+    });
+  });
+
+  if (popup && closePopup) {
     closePopup.addEventListener("click", () => {
       popup.style.display = "none";
     });
@@ -119,6 +353,62 @@ document.addEventListener("DOMContentLoaded", () => {
       url: "index.html#over-ons",
       kleur: "#76D9F8",
       tags: ["over", "ons", "revando", "maarheeze", "bedrijf", "wie"]
+    },
+    {
+      naam: "Opblaasbare Beachbar tent",
+      beschrijving: "Zomerse beachbar tent voor circa 30 personen — €240",
+      url: "opblaasbare-beachbar-tent.html",
+      kleur: "#EC172A",
+      tags: ["beachbar", "beach", "bar", "zomer", "strand", "winter", "lodge", "30 personen"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Biergarten 8x7",
+      beschrijving: "Biertent van 8x7 meter voor 60–70 personen — €345",
+      url: "opblaasbare-biergarten-tent.html",
+      kleur: "#EC172A",
+      tags: ["biergarten", "biertent", "bier", "8x7", "60 personen", "70 personen", "waterdicht"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Caribien pub",
+      beschrijving: "Sfeervolle kroeg-tent voor 50–60 personen — €345",
+      url: "opblaasbare-caribien-tent.html",
+      kleur: "#EC172A",
+      tags: ["caribien", "caraïben", "pub", "kroeg", "café", "bar", "50 personen", "60 personen"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Iglo Ø10x6,5",
+      beschrijving: "Grote koepeltent voor 90–100 personen — €400",
+      url: "opblaasbare-iglo-tent.html",
+      kleur: "#EC172A",
+      tags: ["iglo", "dome", "koepel", "iglotent", "dometent", "90 personen", "100 personen"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Nachtclub 9x7",
+      beschrijving: "Disco-tent met rode loper voor 50–60 personen — €340",
+      url: "opblaasbare-nachtclub-tent.html",
+      kleur: "#EC172A",
+      tags: ["nachtclub", "disco", "discotheek", "club", "9x7", "rode loper", "50 personen", "60 personen", "nightclub"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Pub 10x5",
+      beschrijving: "Engelse pub-tent voor 50–60 personen — €345",
+      url: "opblaasbare-pub-tent.html",
+      kleur: "#EC172A",
+      tags: ["pub", "bar", "kroeg", "engels", "english", "10x5", "50 personen", "60 personen"],
+      zoekOnly: true
+    },
+    {
+      naam: "Opblaasbare Skihut 7x5",
+      beschrijving: "Après-ski tent voor 25–30 personen — €245",
+      url: "opblaasbare-skihut-tent.html",
+      kleur: "#EC172A",
+      tags: ["skihut", "ski", "apres-ski", "après-ski", "winter", "sneeuw", "7x5", "25 personen", "30 personen"],
+      zoekOnly: true
     }
   ];
 
@@ -164,6 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function sluitDropdown() {
     wrapper.classList.remove("open");
+    resultaten.innerHTML = "";
   }
 
   function toonResultaten(zoekterm) {
@@ -171,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const term = zoekterm.trim().toLowerCase();
 
     const gevonden = term === ""
-      ? zoekData
+      ? zoekData.filter(item => !item.zoekOnly)
       : zoekData.filter(item =>
           item.naam.toLowerCase().includes(term) ||
           item.beschrijving.toLowerCase().includes(term) ||
@@ -202,35 +493,170 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function saveOrderData(items) {
+    localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(items));
+    updateRequestBadge();
+  }
+
+  function updateRequestBadge() {
+    const orderData = getOrderData();
+
+    document.querySelectorAll('a[href="aanvraag.html"]').forEach(link => {
+      if (!link.querySelector(".offerte-img")) return;
+
+      link.classList.add("offerte-link");
+
+      let badge = link.querySelector(".aanvraag-badge");
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "aanvraag-badge";
+        link.appendChild(badge);
+      }
+
+      badge.innerText = orderData.length;
+      badge.hidden = orderData.length === 0;
+    });
+  }
+
+  function getSelectedOptions() {
+    return Array.from(document.querySelectorAll(".option-row"))
+      .map(row => {
+        const input = row.querySelector("input[type='checkbox']");
+        if (!input || !input.checked) return null;
+
+        const name = row.querySelector(".option-name")?.innerText.trim() || "";
+
+        return { name };
+      })
+      .filter(Boolean);
+  }
+
   function orderpage() {
-    document.querySelectorAll('.add-to-request').forEach(button => {
-      button.addEventListener('click', function() {
-        const title = document.querySelector('.product-title').innerText.trim();
-        const floor = document.getElementById('vloer')
-        const light = document.getElementById('licht-geluid');
-        const orderdata = {
-          product: title,
-          vloer: floor ? floor.checked : null,
-          licht: light ? light.checked : null
+    document.querySelectorAll(".add-to-request").forEach(button => {
+      button.addEventListener("click", function () {
+        const title = document.querySelector(".product-title")?.innerText.trim();
+        if (!title) return;
+
+        const productImage = document.querySelector(".product-img");
+        const productUrl = window.location.pathname.split("/").pop();
+
+        const product = {
+          id: productUrl || title,
+          title,
+          image: productImage?.getAttribute("src") || "",
+          imageAlt: productImage?.getAttribute("alt") || title,
+          options: getSelectedOptions()
         };
-        const currentData = JSON.parse(localStorage.getItem('orderdata'));
-        const newData = currentData === null ? [] : currentData;
-        console.log(newData);
-        newData.push(JSON.stringify(orderdata))
-        localStorage.setItem('orderdata', {data: newData});
-        window.location.href = 'aanvraag.html';
+
+        const orderData = getOrderData();
+        const existingIndex = orderData.findIndex(item => item.id === product.id);
+
+        if (existingIndex >= 0) {
+          orderData[existingIndex] = product;
+        } else {
+          orderData.push(product);
+        }
+
+        saveOrderData(orderData);
+
+        button.innerText = "Toegevoegd aan aanvraag";
+        button.classList.add("is-added");
+
+        setTimeout(() => {
+          button.innerText = "Toevoegen aan aanvraag";
+          button.classList.remove("is-added");
+        }, 1800);
       });
     });
   }
-  function invoicePage() {
-    const orderdata = JSON.parse(localStorage.getItem('orderdata'));
-    console.log(orderdata);
+
+  function renderInvoiceItem(item) {
+    const listItem = document.createElement("li");
+    listItem.className = "aanvraag-item";
+
+    const image = document.createElement("img");
+    image.className = "aanvraag-item-img";
+    image.src = item.image;
+    image.alt = item.imageAlt || item.title;
+
+    const content = document.createElement("div");
+    content.className = "aanvraag-item-content";
+
+    const title = document.createElement("h3");
+    title.className = "aanvraag-item-title";
+    title.innerText = item.title;
+
+    content.appendChild(title);
+
+    if (item.options && item.options.length > 0) {
+      const options = document.createElement("ul");
+      options.className = "aanvraag-options";
+
+      item.options.forEach(option => {
+        const optionItem = document.createElement("li");
+        optionItem.innerText = option.name;
+        options.appendChild(optionItem);
+      });
+
+      content.appendChild(options);
+    }
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "aanvraag-remove";
+    removeButton.innerText = "×";
+    removeButton.setAttribute("aria-label", `${item.title} verwijderen`);
+    removeButton.addEventListener("click", () => {
+      const nextOrderData = getOrderData().filter(product => product.id !== item.id);
+      saveOrderData(nextOrderData);
+      invoicePage();
+    });
+
+    listItem.append(image, content, removeButton);
+    return listItem;
   }
-  if (document.querySelectorAll('.invoice-page')) {
+
+  function invoicePage() {
+    const overview = document.querySelector(".aanvraag-overzicht");
+    const buttonRow = document.querySelector(".aanvraag-buttons");
+    if (!overview) return;
+
+    const orderData = getOrderData();
+    overview.innerHTML = "";
+    buttonRow?.querySelector(".volgende-stap")?.remove();
+    buttonRow?.classList.toggle("has-items", orderData.length > 0);
+
+    if (orderData.length === 0) {
+      const emptyText = document.createElement("p");
+      emptyText.className = "aanvraag-tekst";
+      emptyText.innerText = "Je hebt momenteel geen items in je aanvraag";
+      overview.appendChild(emptyText);
+      return;
+    }
+
+    const list = document.createElement("ul");
+    list.className = "aanvraag-lijst";
+
+    orderData.forEach(item => {
+      list.appendChild(renderInvoiceItem(item));
+    });
+
+    const nextStep = document.createElement("a");
+    nextStep.href = "gegevens.html";
+    nextStep.className = "volgende-stap";
+    nextStep.innerText = "Volgende stap";
+
+    overview.appendChild(list);
+    buttonRow?.appendChild(nextStep);
+  }
+
+  updateRequestBadge();
+
+  if (document.body.classList.contains("invoice-page")) {
     invoicePage();
   }
-  if (document.querySelectorAll('.add-to-request')) {
+
+  if (document.querySelector(".add-to-request")) {
     orderpage();
   }
 })();
-

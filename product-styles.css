@@ -464,7 +464,7 @@ p {
 .aanvraag-overzicht {
   position: relative;
   background-color: #FFFFFF;
-  height: 80px;
+  min-height: 80px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
   margin-top: 85px;
   border-radius: 2px 2px 12px 12px;
@@ -496,11 +496,93 @@ p {
   max-width: 100%;
 }
 
-.verder-winkelen {
-  display: inline-block;
+.aanvraag-lijst {
+  list-style: none;
+  margin: 0;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aanvraag-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 30px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.aanvraag-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.aanvraag-item-img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.aanvraag-item-content {
+  min-width: 0;
+}
+
+.aanvraag-item-title {
+  font-family: "urbane-rounded", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.aanvraag-options {
+  margin: 0;
+  padding-left: 18px;
+  font-family: "rooney-sans", sans-serif;
+  font-size: 1rem;
+}
+
+.aanvraag-remove {
+  background: transparent;
+  color: #EC172A;
+  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-family: "urbane-rounded", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.aanvraag-remove:hover {
+  transform: translateY(-3px);
+}
+
+.aanvraag-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
   margin-top: 30px;
-  background-color: #EC172A;
-  color: #FFFFFF;
+}
+
+.aanvraag-buttons.has-items {
+  justify-content: flex-end;
+}
+
+.aanvraag-buttons.has-items .verder-winkelen {
+  display: none;
+}
+
+.verder-winkelen,
+.volgende-stap {
+  display: inline-block;
   text-decoration: none;
   border-radius: 12px;
   padding: 15px 28px;
@@ -508,6 +590,21 @@ p {
   font-weight: 550;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+.verder-winkelen {
+  background-color: #EC172A;
+  color: #FFFFFF;
+}
+
+.volgende-stap {
+  background-color: #EC172A;
+  color: #FFFFFF;
+}
+
+.add-to-request.is-added {
+  background-color: #6EC363
+;
 }
 
 /* Gegevens pagina */
@@ -566,11 +663,6 @@ p {
 .gegevens-form input::placeholder,
 .gegevens-form textarea::placeholder {
   color: #AAAAAA;
-}
-
-.gegevens-form input:focus,
-.gegevens-form textarea:focus {
-  border-color: #6EC363;
 }
 
 .gegevens-form-row {
@@ -775,5 +867,301 @@ p {
   
   .bedrijfsgegevens {
     padding: 20px;
+  }
+}
+
+.add-to-request,
+.gegevens-button {
+  transition: transform 0.2s ease;
+}
+
+.add-to-request:hover,
+.gegevens-button:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive hardening for product, request and legal pages */
+@media (max-width: 1024px) {
+  .detail-left,
+  .detail-right,
+  .info-left,
+  .info-right,
+  .aanvraag-left,
+  .aanvraag-right,
+  .gegevens-left,
+  .gegevens-right {
+    min-width: 0;
+  }
+
+  .product-img {
+    aspect-ratio: 4 / 3;
+    max-height: 620px;
+  }
+
+  .price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+  }
+
+  .option-row {
+    min-width: 0;
+  }
+
+  .option-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .info-spec img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+
+  .aanvraag-overzicht,
+  .voorwaarden-content {
+    width: 100%;
+  }
+
+  .aanvraag-item {
+    min-width: 0;
+  }
+
+  .aanvraag-item-title,
+  .aanvraag-options {
+    overflow-wrap: anywhere;
+  }
+
+  .detail {
+    margin-top: 42px;
+  }
+
+  .detail .wrapper,
+  .product-info .wrapper,
+  .aanvraag .wrapper,
+  .gegevens .wrapper {
+    gap: 36px;
+  }
+
+  .product-title {
+    margin-top: 0;
+  }
+
+  .product-options {
+    margin-top: 28px;
+  }
+
+  .product-info {
+    margin-top: 80px;
+  }
+
+  .info-right {
+    max-width: 46%;
+  }
+
+  .aanvraag,
+  .gegevens {
+    margin-top: 72px;
+  }
+
+  .aanvraag-overzicht {
+    margin-top: 42px;
+  }
+
+  .aanvraag-item {
+    grid-template-columns: 96px 1fr auto;
+    gap: 20px;
+  }
+
+  .aanvraag-item-img {
+    width: 96px;
+    height: 72px;
+  }
+
+  .voorwaarden-content {
+    padding: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .detail .wrapper,
+  .product-info .wrapper,
+  .aanvraag .wrapper,
+  .gegevens .wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-left,
+  .detail-right,
+  .info-left,
+  .aanvraag-left,
+  .aanvraag-right,
+  .gegevens-left,
+  .gegevens-right {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .info-right {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .product-img {
+    max-height: 460px;
+  }
+
+  .product-title,
+  .aanvraag-title,
+  .gegevens-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .option-row {
+    padding: 15px 18px;
+  }
+
+  .aanvraag-left p,
+  .gegevens-left p {
+    max-width: 100%;
+  }
+
+  .aanvraag-buttons,
+  .aanvraag-buttons.has-items {
+    justify-content: stretch;
+  }
+
+  .verder-winkelen,
+  .volgende-stap {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .voorwaarden-page {
+    margin-top: 62px;
+  }
+}
+
+@media (max-width: 620px) {
+  .detail,
+  .aanvraag,
+  .gegevens,
+  .voorwaarden-page {
+    margin-top: 38px;
+  }
+
+  .breadcrumbs ul {
+    gap: 6px;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    margin-left: 6px;
+  }
+
+  .product-img {
+    aspect-ratio: 1 / 1;
+    max-height: 360px;
+    border-radius: 14px;
+  }
+
+  .price-amount {
+    font-size: 1.65rem;
+  }
+
+  .price-note {
+    font-size: 1rem;
+  }
+
+  .option-row {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .option-price {
+    font-size: 1rem;
+    margin-left: 8px;
+  }
+
+  .add-to-request,
+  .gegevens-button {
+    font-size: 1.1rem;
+  }
+
+  .info-spec {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .aanvraag-overzicht {
+    margin-top: 28px;
+  }
+
+  .aanvraag-tekst,
+  .aanvraag-lijst {
+    padding: 20px;
+  }
+
+  .aanvraag-item {
+    grid-template-columns: 74px 1fr auto;
+    gap: 12px;
+  }
+
+  .aanvraag-item-img {
+    width: 74px;
+    height: 62px;
+  }
+
+  .aanvraag-item-title {
+    font-size: 1.05rem;
+  }
+
+  .aanvraag-options {
+    font-size: 0.95rem;
+  }
+
+  .aanvraag-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gegevens-form-row {
+    flex-direction: column;
+  }
+
+  .voorwaarden-content {
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+
+  .voorwaarden-content ul,
+  .voorwaarden-content ol {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .option-row {
+    flex-wrap: wrap;
+  }
+
+  .option-price {
+    width: 100%;
+    margin-left: 44px;
+  }
+
+  .aanvraag-item {
+    grid-template-columns: 1fr auto;
+  }
+
+  .aanvraag-item-img {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 }
