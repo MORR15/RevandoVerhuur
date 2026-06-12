@@ -2168,7 +2168,8 @@ footer a {
 .assortiment-link,
 .tent-link,
 .add-to-request,
-.gegevens-button {
+.gegevens-button,
+.social-icons img {
   transition: transform 0.2s ease;
 }
 
@@ -2184,7 +2185,8 @@ footer a {
 .assortiment-link:hover,
 .tent-link:hover,
 .add-to-request:hover,
-.gegevens-button:hover {
+.gegevens-button:hover,
+.social-icons img:hover {
   transform: scale(1.05);
 }
 
