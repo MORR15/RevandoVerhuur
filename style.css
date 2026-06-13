@@ -702,7 +702,7 @@ textarea {
   margin-top: 8px;
 }
 
-/* Formspree AJAX feedback states for the existing contact and quote forms. */
+/* EmailJS feedback states for the existing contact and quote forms. */
 .form-feedback {
   margin: 0;
   font-family: "rooney-sans", sans-serif;
