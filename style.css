@@ -551,6 +551,16 @@ p {
 
 .over-ons-img {
   width: 575px;
+  display: block;
+  box-sizing: border-box;
+  padding: 4px;
+  border-radius: 20px;
+  background: conic-gradient(
+    #76D9F8 0% 25%,
+    #6EC363 25% 50%,
+    #FA961D 50% 75%,
+    #EC172A 75% 100%
+  );
 }
 
 .over-ons-icons {
@@ -614,8 +624,8 @@ p {
   padding: 4px;
   background: conic-gradient(
     #76D9F8 0% 25%,
-    #FA961D 25% 50%,
-    #6EC363 50% 75%,
+    #6EC363 25% 50%,
+    #FA961D 50% 75%,
     #EC172A 75% 100%
   );
   -webkit-mask:
@@ -1032,6 +1042,11 @@ footer a {
   display: flex;
   flex-direction: column;
   margin-top: -7px;
+}
+
+.contact-page-right a{
+  text-decoration: none;
+  color: var(--text-main);
 }
 
 .contact-page-right h3,
